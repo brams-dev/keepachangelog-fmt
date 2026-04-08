@@ -1,21 +1,7 @@
-# changelog 
+# Changelog
 
-This is my changelog.
-Make sure to also checkout this link: blahblah.
-
-Thank you.
-
-## [Unreleased]
+## [0.1.0]
 
 ### Added
 
-- Added something. 
-- And a second thing.
-
-### Changed
-
-### Removed
-
-- Removed something
-
-### Fixed
+- Format your changelog.
