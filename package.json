@@ -1,5 +1,6 @@
 {
 	"name": "keepachangelog-fmt",
+	"packageManager": "bun@1.3.11",
 	"type": "module",
 	"version": "0.1.0",
 	"description": "A formatter for changelogs following the \"keep a changelog\" format.",
@@ -18,8 +19,8 @@
 		"test": "vitest",
 		"typecheck": "tsc --noEmit",
 		"release": "bumpp",
-		"prepublishOnly": "pnpm run build",
-		"publish": "npm publish",
+		"prepublishOnly": "bun run build",
+		"publish": "bun publish",
 		"format": "bun run src/index.ts"
 	},
 	"devDependencies": {
