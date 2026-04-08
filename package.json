@@ -20,7 +20,7 @@
 		"typecheck": "tsc --noEmit",
 		"release": "bumpp",
 		"prepublishOnly": "bun run build",
-		"publish": "bun publish",
+		"publish": "npm publish",
 		"format": "bun run src/index.ts"
 	},
 	"devDependencies": {
