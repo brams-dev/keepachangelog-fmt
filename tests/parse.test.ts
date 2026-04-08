@@ -161,3 +161,67 @@ test('parses a changelog with a title, preamble and an empty release', () => {
 		releases: [defaultEmptyReleaseAst],
 	});
 });
+
+test('parses a changelog with a title, preamble and multiple releases', () => {
+	const changelog = `${defaultTitle}
+
+## [1.0.0] - 2026-04-08 (Sprint x)
+
+### Added
+
+- I added one thing
+
+
+## [0.1.0] - 2026-04-07 (Sprint x)
+
+### Removed
+
+- The thing I removed.
+`;
+
+	const ast = parse(changelog);
+
+	expect(ast).toEqual({
+		type: 'changelog',
+		title: defaultTitle,
+		preamble: [],
+		releases: [
+			{
+				type: 'release',
+				version: '1.0.0',
+				date: '2026-04-08',
+				label: 'Sprint x',
+				sections: [
+					{
+						type: 'section',
+						title: 'Added',
+						changes: [
+							{
+								type: 'change',
+								text: ['I added one thing'],
+							},
+						],
+					},
+				],
+			},
+			{
+				type: 'release',
+				version: '0.1.0',
+				date: '2026-04-07',
+				label: 'Sprint x',
+				sections: [
+					{
+						type: 'section',
+						title: 'Removed',
+						changes: [
+							{
+								type: 'change',
+								text: ['The thing I removed.'],
+							},
+						],
+					},
+				],
+			},
+		],
+	});
+});

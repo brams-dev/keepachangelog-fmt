@@ -72,20 +72,16 @@ export default function parse(text: string) {
 				continue;
 			}
 
-			if (isSectionHeading(line)) break;
-
 			if (!isBullet(line)) {
-				lineNumber++;
-
 				break;
 			}
 
-			lineNumber++;
-
 			changes.push({
 				type: 'change',
-				text: [line],
+				text: [line.replace('- ', '')],
 			});
+
+			lineNumber++;
 		}
 
 		return changes;
@@ -121,8 +117,6 @@ export default function parse(text: string) {
 			}
 
 			if (!isSectionHeading(line)) {
-				lineNumber++;
-
 				break;
 			}
 
@@ -134,7 +128,7 @@ export default function parse(text: string) {
 
 	const parseRelease = () => {
 		const line = lines[lineNumber];
-		const matches = RELEASE_HEADING_REGEX.exec(line);
+		const matches = RELEASE_HEADING_REGEX.exec(line.trim());
 
 		if (!matches)
 			throw new Error(
